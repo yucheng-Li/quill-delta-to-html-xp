@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/nozer/quill-delta-to-html.svg?branch=master)](https://travis-ci.org/nozer/quill-delta-to-html) 
-[![Coverage Status](https://coveralls.io/repos/github/nozer/quill-delta-to-html/badge.svg?branch=master)](https://coveralls.io/github/nozer/quill-delta-to-html?branch=master)
-
-
 # Quill Delta to HTML Converter #
 Converts [Quill's](https://quilljs.com) [Delta](https://quilljs.com/docs/delta/) format to HTML (insert ops only) with properly nested lists.
 
@@ -15,12 +11,12 @@ You can try a live demo of the conversion by opening the `demo-browser.html` fil
 
 Installation
 ```
-npm install quill-delta-to-html
+npm install quill-delta-to-html-xp
 ```
 
 Usage
 ```javascript
-var QuillDeltaToHtmlConverter = require('quill-delta-to-html').QuillDeltaToHtmlConverter;
+var QuillDeltaToHtmlConverter = require('quill-delta-to-html-xp').QuillDeltaToHtmlConverter;
 
 // TypeScript / ES6:
 // import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html'; 
