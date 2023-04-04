@@ -8,6 +8,21 @@ enum EncodeTarget {
   Url = 1,
 }
 
+function handleAdditionalTag(
+  tag: string,
+  attrs: ITagKeyValue | ITagKeyValue[] | undefined = undefined
+) {
+  if (tag === 'video' && attrs) {
+    let src;
+    const arrAttrs = ([] as ITagKeyValue[]).concat(attrs);
+    arrAttrs.map((item: any) => {
+      if (item.key === 'src') src = item.value;
+    });
+    return `<source src="${src}" type="video/mp4" />`;
+  }
+  return '';
+}
+
 function makeStartTag(
   tag: any,
   attrs: ITagKeyValue | ITagKeyValue[] | undefined = undefined
@@ -30,7 +45,9 @@ function makeStartTag(
   if (tag === 'img' || tag === 'br') {
     closing = '/>';
   }
-  return attrsStr ? `<${tag} ${attrsStr}${closing}` : `<${tag}${closing}`;
+  return attrsStr
+    ? `<${tag} ${attrsStr}${closing}` + handleAdditionalTag(tag, attrs)
+    : `<${tag}${closing}`;
 }
 
 function makeEndTag(tag: any = '') {

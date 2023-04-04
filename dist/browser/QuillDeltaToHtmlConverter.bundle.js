@@ -716,7 +716,7 @@ var OpToHtmlConverter = (function () {
         var attrs = this.op.attributes;
         if (!this.op.isText()) {
             return [
-                this.op.isVideo() ? 'iframe' : this.op.isImage() ? 'img' : 'span',
+                this.op.isVideo() ? 'video' : this.op.isImage() ? 'img' : 'span',
             ];
         }
         var positionTag = this.options.paragraphTag || 'p';
@@ -797,7 +797,7 @@ var funcs_html_1 = require("./funcs-html");
 var obj = __importStar(require("./helpers/object"));
 var value_types_1 = require("./value-types");
 var TableGrouper_1 = require("./grouper/TableGrouper");
-var BrTag = '<br/>';
+var BrTag = '\\n';
 var QuillDeltaToHtmlConverter = (function () {
     function QuillDeltaToHtmlConverter(deltaOps, options) {
         this.rawDeltaOps = [];
@@ -1057,6 +1057,19 @@ var EncodeTarget;
     EncodeTarget[EncodeTarget["Html"] = 0] = "Html";
     EncodeTarget[EncodeTarget["Url"] = 1] = "Url";
 })(EncodeTarget || (EncodeTarget = {}));
+function handleAdditionalTag(tag, attrs) {
+    if (attrs === void 0) { attrs = undefined; }
+    if (tag === 'video' && attrs) {
+        var src_1;
+        var arrAttrs = [].concat(attrs);
+        arrAttrs.map(function (item) {
+            if (item.key === 'src')
+                src_1 = item.value;
+        });
+        return "<source src=\"" + src_1 + "\" type=\"video/mp4\" />";
+    }
+    return '';
+}
 function makeStartTag(tag, attrs) {
     if (attrs === void 0) { attrs = undefined; }
     if (!tag) {
@@ -1075,7 +1088,9 @@ function makeStartTag(tag, attrs) {
     if (tag === 'img' || tag === 'br') {
         closing = '/>';
     }
-    return attrsStr ? "<" + tag + " " + attrsStr + closing : "<" + tag + closing;
+    return attrsStr
+        ? "<" + tag + " " + attrsStr + closing + handleAdditionalTag(tag, attrs)
+        : "<" + tag + closing;
 }
 exports.makeStartTag = makeStartTag;
 function makeEndTag(tag) {

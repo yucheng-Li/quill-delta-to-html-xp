@@ -275,7 +275,7 @@ var OpToHtmlConverter = (function () {
         var attrs = this.op.attributes;
         if (!this.op.isText()) {
             return [
-                this.op.isVideo() ? 'iframe' : this.op.isImage() ? 'img' : 'span',
+                this.op.isVideo() ? 'video' : this.op.isImage() ? 'img' : 'span',
             ];
         }
         var positionTag = this.options.paragraphTag || 'p';

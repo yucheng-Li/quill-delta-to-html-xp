@@ -240,8 +240,8 @@ class OpToHtmlConverter {
     const customTagAttributes = this.getCustomTagAttributes();
     const customAttr = customTagAttributes
       ? Object.keys(this.getCustomTagAttributes()).map((k) =>
-          makeAttr(k, customTagAttributes[k])
-        )
+        makeAttr(k, customTagAttributes[k])
+      )
       : [];
     var classes = this.getCssClasses();
     var tagAttrs = classes.length
@@ -390,7 +390,7 @@ class OpToHtmlConverter {
     // embeds
     if (!this.op.isText()) {
       return [
-        this.op.isVideo() ? 'iframe' : this.op.isImage() ? 'img' : 'span', // formula
+        this.op.isVideo() ? 'video' : this.op.isImage() ? 'img' : 'span', // formula
       ];
     }
 
@@ -413,8 +413,8 @@ class OpToHtmlConverter {
         return customTag
           ? [customTag]
           : firstItem === 'header'
-          ? ['h' + attrs[firstItem]]
-          : [arr.preferSecond(item)!];
+            ? ['h' + attrs[firstItem]]
+            : [arr.preferSecond(item)!];
       }
     }
 
@@ -452,10 +452,10 @@ class OpToHtmlConverter {
       return customTagsMap[item[0]]
         ? customTagsMap[item[0]]
         : item[0] === 'script'
-        ? attrs[item[0]] === ScriptType.Sub
-          ? 'sub'
-          : 'sup'
-        : arr.preferSecond(item)!;
+          ? attrs[item[0]] === ScriptType.Sub
+            ? 'sub'
+            : 'sup'
+          : arr.preferSecond(item)!;
     });
   }
 }

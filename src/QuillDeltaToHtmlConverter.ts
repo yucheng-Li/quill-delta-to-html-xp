@@ -27,7 +27,7 @@ import { TableGrouper } from './grouper/TableGrouper';
 
 interface IQuillDeltaToHtmlConverterOptions
   extends IOpAttributeSanitizerOptions,
-    IOpToHtmlConverterOptions {
+  IOpToHtmlConverterOptions {
   orderedListTag?: string;
   bulletListTag?: string;
 
@@ -38,7 +38,7 @@ interface IQuillDeltaToHtmlConverterOptions
   multiLineCustomBlock?: boolean;
 }
 
-const BrTag = '<br/>';
+const BrTag = '\\n';
 
 class QuillDeltaToHtmlConverter {
   private options: IQuillDeltaToHtmlConverterOptions;
@@ -101,12 +101,12 @@ class QuillDeltaToHtmlConverter {
     return op.isOrderedList()
       ? this.options.orderedListTag + ''
       : op.isBulletList()
-      ? this.options.bulletListTag + ''
-      : op.isCheckedList()
-      ? this.options.bulletListTag + ''
-      : op.isUncheckedList()
-      ? this.options.bulletListTag + ''
-      : '';
+        ? this.options.bulletListTag + ''
+        : op.isCheckedList()
+          ? this.options.bulletListTag + ''
+          : op.isUncheckedList()
+            ? this.options.bulletListTag + ''
+            : '';
   }
 
   getGroupedOps(): TDataGroup[] {

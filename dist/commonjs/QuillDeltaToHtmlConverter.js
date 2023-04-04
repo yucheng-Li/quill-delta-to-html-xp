@@ -16,7 +16,7 @@ var funcs_html_1 = require("./funcs-html");
 var obj = __importStar(require("./helpers/object"));
 var value_types_1 = require("./value-types");
 var TableGrouper_1 = require("./grouper/TableGrouper");
-var BrTag = '<br/>';
+var BrTag = '\\n';
 var QuillDeltaToHtmlConverter = (function () {
     function QuillDeltaToHtmlConverter(deltaOps, options) {
         this.rawDeltaOps = [];
