@@ -38,7 +38,7 @@ interface IQuillDeltaToHtmlConverterOptions
   multiLineCustomBlock?: boolean;
 }
 
-const BrTag = '\\n';
+const BrTag = '\n';
 
 class QuillDeltaToHtmlConverter {
   private options: IQuillDeltaToHtmlConverterOptions;

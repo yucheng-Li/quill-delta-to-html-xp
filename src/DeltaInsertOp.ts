@@ -24,6 +24,7 @@ class DeltaInsertOp {
       this.isBlockquote() ||
       this.isList() ||
       this.isTable() ||
+      this.isImage() ||
       this.isCodeBlock() ||
       this.isHeader() ||
       this.isBlockAttribute() ||
