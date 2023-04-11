@@ -268,8 +268,6 @@ class OpToHtmlConverter {
 
     if (this.op.isVideo()) {
       return tagAttrs.concat(
-        makeAttr('frameborder', '0'),
-        makeAttr('allowfullscreen', 'true'),
         makeAttr('src', this.op.insert.value)
       );
     }
