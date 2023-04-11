@@ -188,7 +188,7 @@ var OpToHtmlConverter = (function () {
             return tagAttrs;
         }
         if (this.op.isVideo()) {
-            return tagAttrs.concat(makeAttr('frameborder', '0'), makeAttr('allowfullscreen', 'true'), makeAttr('src', this.op.insert.value));
+            return tagAttrs.concat(makeAttr('src', this.op.insert.value));
         }
         if (this.op.isMentions()) {
             var mention = this.op.attributes.mention;
