@@ -1173,6 +1173,9 @@ var Grouper = (function () {
             if (op.isVideo()) {
                 result.push(new group_types_1.VideoItem(op));
             }
+            else if (op.isImage()) {
+                result.push(new group_types_1.ImageItem(op));
+            }
             else if (op.isCustomEmbedBlock()) {
                 result.push(new group_types_1.BlotBlock(op));
             }
@@ -1437,6 +1440,14 @@ var VideoItem = (function (_super) {
     return VideoItem;
 }(SingleItem));
 exports.VideoItem = VideoItem;
+var ImageItem = (function (_super) {
+    __extends(ImageItem, _super);
+    function ImageItem() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ImageItem;
+}(SingleItem));
+exports.ImageItem = ImageItem;
 var BlotBlock = (function (_super) {
     __extends(BlotBlock, _super);
     function BlotBlock() {

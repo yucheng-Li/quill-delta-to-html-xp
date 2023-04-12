@@ -7,6 +7,7 @@ import {
 } from './../helpers/array';
 import {
   VideoItem,
+  ImageItem,
   InlineGroup,
   BlockGroup,
   TDataGroup,
@@ -35,11 +36,12 @@ class Grouper {
 
       if (op.isVideo()) {
         result.push(new VideoItem(op));
+      } else if (op.isImage()) {
+        result.push(new ImageItem(op));
       } else if (op.isCustomEmbedBlock()) {
         result.push(new BlotBlock(op));
       } else if (op.isContainerBlock()) {
         opsSlice = sliceFromReverseWhile(ops, i - 1, canBeInBlock);
-
         result.push(new BlockGroup(op, opsSlice.elements));
         i = opsSlice.sliceStartsAt > -1 ? opsSlice.sliceStartsAt : i;
       } else {

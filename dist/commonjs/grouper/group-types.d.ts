@@ -9,6 +9,8 @@ declare class SingleItem {
 }
 declare class VideoItem extends SingleItem {
 }
+declare class ImageItem extends SingleItem {
+}
 declare class BlotBlock extends SingleItem {
 }
 declare class BlockGroup {
@@ -38,4 +40,4 @@ declare class TableCell {
     constructor(item: BlockGroup);
 }
 declare type TDataGroup = VideoItem | InlineGroup | BlockGroup | ListItem | ListGroup | TableGroup | TableRow | TableCell;
-export { VideoItem, BlotBlock, InlineGroup, BlockGroup, ListGroup, ListItem, TableGroup, TableRow, TableCell, TDataGroup, };
+export { VideoItem, ImageItem, BlotBlock, InlineGroup, BlockGroup, ListGroup, ListItem, TableGroup, TableRow, TableCell, TDataGroup, };

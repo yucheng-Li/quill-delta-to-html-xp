@@ -22,6 +22,9 @@ var Grouper = (function () {
             if (op.isVideo()) {
                 result.push(new group_types_1.VideoItem(op));
             }
+            else if (op.isImage()) {
+                result.push(new group_types_1.ImageItem(op));
+            }
             else if (op.isCustomEmbedBlock()) {
                 result.push(new group_types_1.BlotBlock(op));
             }

@@ -13,8 +13,9 @@ class SingleItem {
     this.op = op;
   }
 }
-class VideoItem extends SingleItem {}
-class BlotBlock extends SingleItem {}
+class VideoItem extends SingleItem { }
+class ImageItem extends SingleItem { }
+class BlotBlock extends SingleItem { }
 
 class BlockGroup {
   readonly op: DeltaInsertOp;
@@ -74,6 +75,7 @@ type TDataGroup =
 
 export {
   VideoItem,
+  ImageItem,
   BlotBlock,
   InlineGroup,
   BlockGroup,

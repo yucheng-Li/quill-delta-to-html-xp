@@ -31,6 +31,14 @@ var VideoItem = (function (_super) {
     return VideoItem;
 }(SingleItem));
 exports.VideoItem = VideoItem;
+var ImageItem = (function (_super) {
+    __extends(ImageItem, _super);
+    function ImageItem() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ImageItem;
+}(SingleItem));
+exports.ImageItem = ImageItem;
 var BlotBlock = (function (_super) {
     __extends(BlotBlock, _super);
     function BlotBlock() {
