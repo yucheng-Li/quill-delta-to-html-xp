@@ -37,6 +37,7 @@ enum GroupType {
   List = 'list',
   Video = 'video',
   Table = 'table',
+  Image = 'image',
 }
 
 export {

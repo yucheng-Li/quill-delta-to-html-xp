@@ -903,6 +903,13 @@ var QuillDeltaToHtmlConverter = (function () {
                     return converter.getHtml();
                 });
             }
+            else if (group instanceof group_types_1.ImageItem) {
+                return _this._renderWithCallbacks(value_types_1.GroupType.Image, group, function () {
+                    var g = group;
+                    var converter = new OpToHtmlConverter_1.OpToHtmlConverter(g.op, _this.converterOptions);
+                    return converter.getHtml();
+                });
+            }
             else {
                 return _this._renderWithCallbacks(value_types_1.GroupType.InlineGroup, group, function () {
                     return _this._renderInlines(group.ops, true);
@@ -1733,6 +1740,7 @@ var GroupType;
     GroupType["List"] = "list";
     GroupType["Video"] = "video";
     GroupType["Table"] = "table";
+    GroupType["Image"] = "image";
 })(GroupType || (GroupType = {}));
 exports.GroupType = GroupType;
 

@@ -30,6 +30,7 @@ declare enum GroupType {
     InlineGroup = "inline-group",
     List = "list",
     Video = "video",
-    Table = "table"
+    Table = "table",
+    Image = "image"
 }
 export { NewLine, ListType, ScriptType, DirectionType, AlignType, DataType, GroupType, };

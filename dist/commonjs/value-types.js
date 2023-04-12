@@ -44,5 +44,6 @@ var GroupType;
     GroupType["List"] = "list";
     GroupType["Video"] = "video";
     GroupType["Table"] = "table";
+    GroupType["Image"] = "image";
 })(GroupType || (GroupType = {}));
 exports.GroupType = GroupType;

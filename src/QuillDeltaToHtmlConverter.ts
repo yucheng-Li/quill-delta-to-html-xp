@@ -17,6 +17,7 @@ import {
   TableGroup,
   TableRow,
   TableCell,
+  ImageItem,
 } from './grouper/group-types';
 import { ListNester } from './grouper/ListNester';
 import { makeStartTag, makeEndTag, encodeHtml } from './funcs-html';
@@ -158,6 +159,12 @@ class QuillDeltaToHtmlConverter {
         } else if (group instanceof VideoItem) {
           return this._renderWithCallbacks(GroupType.Video, group, () => {
             var g = <VideoItem>group;
+            var converter = new OpToHtmlConverter(g.op, this.converterOptions);
+            return converter.getHtml();
+          });
+        } else if (group instanceof ImageItem) {
+          return this._renderWithCallbacks(GroupType.Image, group, () => {
+            var g = <ImageItem>group;
             var converter = new OpToHtmlConverter(g.op, this.converterOptions);
             return converter.getHtml();
           });
