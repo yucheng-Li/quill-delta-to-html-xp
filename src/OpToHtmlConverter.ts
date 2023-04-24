@@ -273,6 +273,8 @@ class OpToHtmlConverter {
     if (this.op.isVideo()) {
       return tagAttrs.concat(
         makeAttr('src', this.op.insert.value)
+      ).concat(
+        makeAttr('poster', this.op.insert.value + '?x-oss-process=video/snapshot,t_0,f_jpg')
       );
     }
 

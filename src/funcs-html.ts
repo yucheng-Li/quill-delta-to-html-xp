@@ -16,7 +16,7 @@ function handleAdditionalTag(
     let src;
     const arrAttrs = ([] as ITagKeyValue[]).concat(attrs);
     arrAttrs.map((item: any) => {
-      if (item.key === 'poster') src = item.value + '?x-oss-process=video/snapshot,t_0,f_jpg';
+      if (item.key === 'src') src = item.value;
     });
     return `<source src="${src}" type="video/mp4" />`;
   }

@@ -192,7 +192,7 @@ var OpToHtmlConverter = (function () {
             return tagAttrs;
         }
         if (this.op.isVideo()) {
-            return tagAttrs.concat(makeAttr('src', this.op.insert.value));
+            return tagAttrs.concat(makeAttr('src', this.op.insert.value)).concat(makeAttr('poster', this.op.insert.value + '?x-oss-process=video/snapshot,t_0,f_jpg'));
         }
         if (this.op.isMentions()) {
             var mention = this.op.attributes.mention;
