@@ -11,8 +11,8 @@ function handleAdditionalTag(tag, attrs) {
         var src_1;
         var arrAttrs = [].concat(attrs);
         arrAttrs.map(function (item) {
-            if (item.key === 'src')
-                src_1 = item.value;
+            if (item.key === 'poster')
+                src_1 = item.value + '?x-oss-process=video/snapshot,t_0,f_jpg';
         });
         return "<source src=\"" + src_1 + "\" type=\"video/mp4\" />";
     }
