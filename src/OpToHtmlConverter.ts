@@ -124,7 +124,7 @@ class OpToHtmlConverter {
       if (isImageLink(tag)) {
         beginTags.push(makeStartTag('a', this.getLinkAttrs()));
       }
-      if (tag === 'img') {
+      if (tag === 'img' || tag === 'video') {
         beginTags.push(makeStartTag(this.options.paragraphTag));
         endTags.push(makeEndTag(this.options.paragraphTag))
       }

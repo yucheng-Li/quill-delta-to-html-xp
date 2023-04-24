@@ -519,7 +519,7 @@ var OpToHtmlConverter = (function () {
             if (isImageLink(tag)) {
                 beginTags.push(funcs_html_1.makeStartTag('a', this.getLinkAttrs()));
             }
-            if (tag === 'img') {
+            if (tag === 'img' || tag === 'video') {
                 beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
                 endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
             }
