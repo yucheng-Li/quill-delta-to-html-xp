@@ -519,6 +519,10 @@ var OpToHtmlConverter = (function () {
             if (isImageLink(tag)) {
                 beginTags.push(funcs_html_1.makeStartTag('a', this.getLinkAttrs()));
             }
+            if (tag === 'img') {
+                beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
+                endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
+            }
             beginTags.push(funcs_html_1.makeStartTag(tag, attrs));
             endTags.push(tag === 'img' ? '' : funcs_html_1.makeEndTag(tag));
             if (isImageLink(tag)) {
