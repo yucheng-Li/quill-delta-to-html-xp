@@ -124,16 +124,17 @@ class OpToHtmlConverter {
       if (isImageLink(tag)) {
         beginTags.push(makeStartTag('a', this.getLinkAttrs()));
       }
-      if (tag === 'img' || tag === 'video') {
-        beginTags.push(makeStartTag(this.options.paragraphTag));
-        endTags.push(makeEndTag(this.options.paragraphTag))
-      }
-      beginTags.push(makeStartTag(tag, attrs));
-      endTags.push(tag === 'img' ? '' : makeEndTag(tag));
       if (isImageLink(tag)) {
         endTags.push(makeEndTag('a'));
       }
-      // consumed in first tag
+      if (tag === 'img' || tag === 'video') {
+        beginTags.push(makeStartTag(this.options.paragraphTag));
+      }
+      beginTags.push(makeStartTag(tag, attrs));
+      if (tag === 'img' || tag === 'video') {
+        endTags.push(makeEndTag(this.options.paragraphTag))
+      }
+      endTags.push(tag === 'img' ? '' : makeEndTag(tag));
       attrs = [];
     }
     endTags.reverse();

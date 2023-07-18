@@ -519,15 +519,17 @@ var OpToHtmlConverter = (function () {
             if (isImageLink(tag)) {
                 beginTags.push(funcs_html_1.makeStartTag('a', this.getLinkAttrs()));
             }
-            if (tag === 'img' || tag === 'video') {
-                beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
-                endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
-            }
-            beginTags.push(funcs_html_1.makeStartTag(tag, attrs));
-            endTags.push(tag === 'img' ? '' : funcs_html_1.makeEndTag(tag));
             if (isImageLink(tag)) {
                 endTags.push(funcs_html_1.makeEndTag('a'));
             }
+            if (tag === 'img' || tag === 'video') {
+                beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
+            }
+            beginTags.push(funcs_html_1.makeStartTag(tag, attrs));
+            if (tag === 'img' || tag === 'video') {
+                endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
+            }
+            endTags.push(tag === 'img' ? '' : funcs_html_1.makeEndTag(tag));
             attrs = [];
         }
         endTags.reverse();
