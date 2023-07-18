@@ -673,18 +673,8 @@ var OpToHtmlConverter = (function () {
     };
     OpToHtmlConverter.prototype.getLinkAttrs = function () {
         var tagAttrs = [];
-        var targetForAll = OpAttributeSanitizer_1.OpAttributeSanitizer.isValidTarget(this.options.linkTarget || '')
-            ? this.options.linkTarget
-            : undefined;
-        var relForAll = OpAttributeSanitizer_1.OpAttributeSanitizer.IsValidRel(this.options.linkRel || '')
-            ? this.options.linkRel
-            : undefined;
-        var target = this.op.attributes.target || targetForAll;
-        var rel = this.op.attributes.rel || relForAll;
         return tagAttrs
-            .concat(this.makeAttr('href', this.op.attributes.link))
-            .concat(target ? this.makeAttr('target', target) : [])
-            .concat(rel ? this.makeAttr('rel', rel) : []);
+            .concat(this.makeAttr('href', this.op.attributes.link));
     };
     OpToHtmlConverter.prototype.getCustomTag = function (format) {
         if (this.options.customTag &&
