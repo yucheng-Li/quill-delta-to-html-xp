@@ -328,22 +328,22 @@ class OpToHtmlConverter {
   getLinkAttrs(): Array<ITagKeyValue> {
     let tagAttrs: ITagKeyValue[] = [];
 
-    let targetForAll = OpAttributeSanitizer.isValidTarget(
-      this.options.linkTarget || ''
-    )
-      ? this.options.linkTarget
-      : undefined;
-    let relForAll = OpAttributeSanitizer.IsValidRel(this.options.linkRel || '')
-      ? this.options.linkRel
-      : undefined;
+    // let targetForAll = OpAttributeSanitizer.isValidTarget(
+    //   this.options.linkTarget || ''
+    // )
+    //   ? this.options.linkTarget
+    //   : undefined;
+    // let relForAll = OpAttributeSanitizer.IsValidRel(this.options.linkRel || '')
+    //   ? this.options.linkRel
+    //   : undefined;
 
-    let target = this.op.attributes.target || targetForAll;
-    let rel = this.op.attributes.rel || relForAll;
+    // let target = this.op.attributes.target || targetForAll;
+    // let rel = this.op.attributes.rel || relForAll;
 
     return tagAttrs
       .concat(this.makeAttr('href', this.op.attributes.link!))
-      .concat(target ? this.makeAttr('target', target) : [])
-      .concat(rel ? this.makeAttr('rel', rel) : []);
+    // .concat(target ? this.makeAttr('target', target) : [])
+    // .concat(rel ? this.makeAttr('rel', rel) : []);
   }
 
   getCustomTag(format: string) {
