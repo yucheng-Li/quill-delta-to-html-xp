@@ -23,12 +23,22 @@ import * as obj from './helpers/object';
  */
 
 class InsertOpDenormalizer {
-  static denormalize(op: any): any[] {
+  static denormalize(op: any, pre: any, next: any): any[] {
     if (!op || typeof op !== 'object') {
       return [];
     }
 
     if (typeof op.insert === 'object' || op.insert === NewLine) {
+      if (op.insert.image) {
+        const imageType = pre.insert.image || next.insert.image ? 'inline' : 'block';
+        return [{
+          insert: op.insert,
+          attributes: {
+            ...op.attributes,
+            imageType: imageType
+          }
+        }];
+      }
       return [op];
     }
 

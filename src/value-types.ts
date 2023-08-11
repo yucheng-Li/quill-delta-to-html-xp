@@ -40,6 +40,11 @@ enum GroupType {
   Image = 'image',
 }
 
+enum ImageType {
+  Inline = 'inline',
+  Block = 'block',
+}
+
 export {
   NewLine,
   ListType,
@@ -48,4 +53,5 @@ export {
   AlignType,
   DataType,
   GroupType,
+  ImageType
 };

@@ -5,7 +5,9 @@ import {
   ITagKeyValue,
 } from './funcs-html';
 import { DeltaInsertOp } from './DeltaInsertOp';
-import { ScriptType, NewLine } from './value-types';
+import {
+  ScriptType, NewLine, ImageType
+} from './value-types';
 import * as obj from './helpers/object';
 import { IMention } from './mentions/MentionSanitizer';
 import * as arr from './helpers/array';
@@ -128,11 +130,19 @@ class OpToHtmlConverter {
         endTags.push(makeEndTag('a'));
       }
       if (tag === 'img' || tag === 'video') {
-        beginTags.push(makeStartTag(this.options.paragraphTag));
+        if (this.op.attributes.imageType === ImageType.Inline) {
+          beginTags.push('');
+        } else {
+          beginTags.push(makeStartTag(this.options.paragraphTag));
+        }
       }
       beginTags.push(makeStartTag(tag, attrs));
       if (tag === 'img' || tag === 'video') {
-        endTags.push(makeEndTag(this.options.paragraphTag))
+        if (this.op.attributes.imageType === ImageType.Inline) {
+          endTags.push('');
+        } else {
+          endTags.push(makeEndTag(this.options.paragraphTag))
+        }
       }
       endTags.push(tag === 'img' ? '' : makeEndTag(tag));
       attrs = [];

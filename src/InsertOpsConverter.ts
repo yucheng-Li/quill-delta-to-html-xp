@@ -22,7 +22,7 @@ class InsertOpsConverter {
 
     var denormalizedOps = [].concat.apply(
       [],
-      deltaOps.map(InsertOpDenormalizer.denormalize)
+      deltaOps.map((op, index) => InsertOpDenormalizer.denormalize(op, deltaOps[index - 1] || null, deltaOps[index + 1] || null))
     );
     var results: DeltaInsertOp[] = [];
 
@@ -64,24 +64,24 @@ class InsertOpsConverter {
 
     return DataType.Image in insertPropVal
       ? new InsertDataQuill(
-          DataType.Image,
-          OpLinkSanitizer.sanitize(
-            insertPropVal[DataType.Image] + '',
-            sanitizeOptions
-          )
+        DataType.Image,
+        OpLinkSanitizer.sanitize(
+          insertPropVal[DataType.Image] + '',
+          sanitizeOptions
         )
+      )
       : DataType.Video in insertPropVal
-      ? new InsertDataQuill(
+        ? new InsertDataQuill(
           DataType.Video,
           OpLinkSanitizer.sanitize(
             insertPropVal[DataType.Video] + '',
             sanitizeOptions
           )
         )
-      : DataType.Formula in insertPropVal
-      ? new InsertDataQuill(DataType.Formula, insertPropVal[DataType.Formula])
-      : // custom
-        new InsertDataCustom(keys[0], insertPropVal[keys[0]]);
+        : DataType.Formula in insertPropVal
+          ? new InsertDataQuill(DataType.Formula, insertPropVal[DataType.Formula])
+          : // custom
+          new InsertDataCustom(keys[0], insertPropVal[keys[0]]);
   }
 }
 
