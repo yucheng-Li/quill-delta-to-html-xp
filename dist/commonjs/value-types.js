@@ -47,3 +47,9 @@ var GroupType;
     GroupType["Image"] = "image";
 })(GroupType || (GroupType = {}));
 exports.GroupType = GroupType;
+var ImageType;
+(function (ImageType) {
+    ImageType["Inline"] = "inline";
+    ImageType["Block"] = "block";
+})(ImageType || (ImageType = {}));
+exports.ImageType = ImageType;

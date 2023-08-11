@@ -158,6 +158,14 @@ exports.InsertDataCustom = InsertDataCustom;
 
 },{}],3:[function(require,module,exports){
 "use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -172,11 +180,18 @@ var obj = __importStar(require("./helpers/object"));
 var InsertOpDenormalizer = (function () {
     function InsertOpDenormalizer() {
     }
-    InsertOpDenormalizer.denormalize = function (op) {
+    InsertOpDenormalizer.denormalize = function (op, pre, next) {
         if (!op || typeof op !== 'object') {
             return [];
         }
         if (typeof op.insert === 'object' || op.insert === value_types_1.NewLine) {
+            if (op.insert.image) {
+                var imageType = pre.insert.image || next.insert.image ? 'inline' : 'block';
+                return [{
+                        insert: op.insert,
+                        attributes: __assign({}, op.attributes, { imageType: imageType })
+                    }];
+            }
             return [op];
         }
         var newlinedArray = str.tokenizeWithNewLines(op.insert + '');
@@ -213,7 +228,7 @@ var InsertOpsConverter = (function () {
         if (!Array.isArray(deltaOps)) {
             return [];
         }
-        var denormalizedOps = [].concat.apply([], deltaOps.map(InsertOpDenormalizer_1.InsertOpDenormalizer.denormalize));
+        var denormalizedOps = [].concat.apply([], deltaOps.map(function (op, index) { return InsertOpDenormalizer_1.InsertOpDenormalizer.denormalize(op, deltaOps[index - 1] || null, deltaOps[index + 1] || null); }));
         var results = [];
         var insertVal, attributes;
         for (var _i = 0, denormalizedOps_1 = denormalizedOps; _i < denormalizedOps_1.length; _i++) {
@@ -523,11 +538,21 @@ var OpToHtmlConverter = (function () {
                 endTags.push(funcs_html_1.makeEndTag('a'));
             }
             if (tag === 'img' || tag === 'video') {
-                beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
+                if (this.op.attributes.imageType === value_types_1.ImageType.Inline) {
+                    beginTags.push('');
+                }
+                else {
+                    beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
+                }
             }
             beginTags.push(funcs_html_1.makeStartTag(tag, attrs));
             if (tag === 'img' || tag === 'video') {
-                endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
+                if (this.op.attributes.imageType === value_types_1.ImageType.Inline) {
+                    endTags.push('');
+                }
+                else {
+                    endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
+                }
             }
             endTags.push(tag === 'img' ? '' : funcs_html_1.makeEndTag(tag));
             attrs = [];
@@ -1739,6 +1764,12 @@ var GroupType;
     GroupType["Image"] = "image";
 })(GroupType || (GroupType = {}));
 exports.GroupType = GroupType;
+var ImageType;
+(function (ImageType) {
+    ImageType["Inline"] = "inline";
+    ImageType["Block"] = "block";
+})(ImageType || (ImageType = {}));
+exports.ImageType = ImageType;
 
 },{}],20:[function(require,module,exports){
 (function (global){

@@ -13,7 +13,7 @@ var InsertOpsConverter = (function () {
         if (!Array.isArray(deltaOps)) {
             return [];
         }
-        var denormalizedOps = [].concat.apply([], deltaOps.map(InsertOpDenormalizer_1.InsertOpDenormalizer.denormalize));
+        var denormalizedOps = [].concat.apply([], deltaOps.map(function (op, index) { return InsertOpDenormalizer_1.InsertOpDenormalizer.denormalize(op, deltaOps[index - 1] || null, deltaOps[index + 1] || null); }));
         var results = [];
         var insertVal, attributes;
         for (var _i = 0, denormalizedOps_1 = denormalizedOps; _i < denormalizedOps_1.length; _i++) {

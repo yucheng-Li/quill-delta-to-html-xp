@@ -81,11 +81,21 @@ var OpToHtmlConverter = (function () {
                 endTags.push(funcs_html_1.makeEndTag('a'));
             }
             if (tag === 'img' || tag === 'video') {
-                beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
+                if (this.op.attributes.imageType === value_types_1.ImageType.Inline) {
+                    beginTags.push('');
+                }
+                else {
+                    beginTags.push(funcs_html_1.makeStartTag(this.options.paragraphTag));
+                }
             }
             beginTags.push(funcs_html_1.makeStartTag(tag, attrs));
             if (tag === 'img' || tag === 'video') {
-                endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
+                if (this.op.attributes.imageType === value_types_1.ImageType.Inline) {
+                    endTags.push('');
+                }
+                else {
+                    endTags.push(funcs_html_1.makeEndTag(this.options.paragraphTag));
+                }
             }
             endTags.push(tag === 'img' ? '' : funcs_html_1.makeEndTag(tag));
             attrs = [];

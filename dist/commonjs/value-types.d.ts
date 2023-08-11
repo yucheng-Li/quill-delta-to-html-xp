@@ -33,4 +33,8 @@ declare enum GroupType {
     Table = "table",
     Image = "image"
 }
-export { NewLine, ListType, ScriptType, DirectionType, AlignType, DataType, GroupType, };
+declare enum ImageType {
+    Inline = "inline",
+    Block = "block"
+}
+export { NewLine, ListType, ScriptType, DirectionType, AlignType, DataType, GroupType, ImageType };
