@@ -39,6 +39,9 @@ class InsertOpDenormalizer {
           }
         }];
       }
+      if (op.insert === NewLine && pre.insert.image) {
+        return []
+      }
       return [op];
     }
 
