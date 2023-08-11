@@ -192,6 +192,9 @@ var InsertOpDenormalizer = (function () {
                         attributes: __assign({}, op.attributes, { imageType: imageType })
                     }];
             }
+            if (op.insert === value_types_1.NewLine && pre.insert.image) {
+                return [];
+            }
             return [op];
         }
         var newlinedArray = str.tokenizeWithNewLines(op.insert + '');
