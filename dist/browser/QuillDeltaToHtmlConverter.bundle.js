@@ -192,7 +192,7 @@ var InsertOpDenormalizer = (function () {
                         attributes: __assign({}, op.attributes, { imageType: imageType })
                     }];
             }
-            if (op.insert === value_types_1.NewLine && pre.insert.image) {
+            if (op.insert === value_types_1.NewLine && pre && pre.insert && pre.insert.image) {
                 return [];
             }
             return [op];
