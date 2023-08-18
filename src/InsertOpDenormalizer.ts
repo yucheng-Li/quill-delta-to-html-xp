@@ -29,8 +29,8 @@ class InsertOpDenormalizer {
     }
 
     if (typeof op.insert === 'object' || op.insert === NewLine) {
-      if (op.insert.image) {
-        const imageType = pre.insert.image || next.insert.image ? 'inline' : 'block';
+      if (op.insert.image && pre && next) {
+        const imageType = (pre.insert && pre.insert.image) || (next.insert && next.insert.image) ? 'inline' : 'block';
         return [{
           insert: op.insert,
           attributes: {

@@ -26,8 +26,8 @@ var InsertOpDenormalizer = (function () {
             return [];
         }
         if (typeof op.insert === 'object' || op.insert === value_types_1.NewLine) {
-            if (op.insert.image) {
-                var imageType = pre.insert.image || next.insert.image ? 'inline' : 'block';
+            if (op.insert.image && pre && next) {
+                var imageType = (pre.insert && pre.insert.image) || (next.insert && next.insert.image) ? 'inline' : 'block';
                 return [{
                         insert: op.insert,
                         attributes: __assign({}, op.attributes, { imageType: imageType })
